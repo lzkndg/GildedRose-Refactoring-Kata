@@ -30,8 +30,9 @@ export class GildedRose {
       else if (days > 0) return 3
       else return -item.quality;
     }
-    if (item.name == 'Conjured') {
-      
+    if (item.name.startsWith('Conjured')) {
+      if (item.sellIn > 0) return -2
+      else return -4;
     }
     if (item.quality <= 0) return 0;
     if (days > 0) return -1

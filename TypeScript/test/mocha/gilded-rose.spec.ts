@@ -91,7 +91,7 @@ describe('Gilded Rose', () => {
     expect(items[0].quality).to.equal(13);
   });
 
-  it('backstage passes quality is 0 after sellBy date', () => {
+  it('backstage passes quality is 0 after sellIn is 0', () => {
     const gildedRose = new GildedRose([new Item('Backstage passes to a TAFKAL80ETC concert', 0, 10)]);
     let items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(-1);
@@ -103,5 +103,12 @@ describe('Gilded Rose', () => {
     let items = gildedRose.updateQuality();
     expect(items[0].sellIn).to.equal(9);
     expect(items[0].quality).to.equal(8);
+  });
+
+  it('conjured item quality degrades by 4 after sellIn is 0', () => {
+    const gildedRose = new GildedRose([new Item('Conjured Something', 0, 10)]);
+    let items = gildedRose.updateQuality();
+    expect(items[0].sellIn).to.equal(-1);
+    expect(items[0].quality).to.equal(6);
   });
 });
